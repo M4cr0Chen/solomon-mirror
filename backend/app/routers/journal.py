@@ -76,7 +76,7 @@ Remember:
 """
 
     try:
-        model = genai.GenerativeModel('gemini-2.0-flash')
+        model = genai.GenerativeModel('gemini-2.5-flash')
         response = model.generate_content(
             system_prompt,
             generation_config=genai.types.GenerationConfig(
@@ -147,7 +147,7 @@ The result should read like a single, thoughtful journal entry.
 Write 2-4 paragraphs maximum."""
 
     try:
-        model = genai.GenerativeModel('gemini-2.0-flash')
+        model = genai.GenerativeModel('gemini-2.5-flash')
         response = model.generate_content(
             system_prompt,
             generation_config=genai.types.GenerationConfig(
@@ -220,7 +220,7 @@ async def process_follow_up(request: JournalFollowUpRequest, user_id: str = DEMO
         result = await ingest_journal(user_id, synthesized_entry)
 
         # Generate new insight based on the deeper exploration
-        model = genai.GenerativeModel('gemini-2.0-flash')
+        model = genai.GenerativeModel('gemini-2.5-flash')
         insight_response = model.generate_content(
             f"""Based on this journal entry and self-exploration, provide a brief, warm
             observation (1-2 sentences) that might help the person see a pattern or

@@ -499,7 +499,7 @@ Example response structure:
     try:
         print(f"[EMPATH] Processing message: {user_message[:50]}...")
 
-        model = genai.GenerativeModel('gemini-2.0-flash')
+        model = genai.GenerativeModel('gemini-2.5-flash')
 
         full_prompt = f"""{system_prompt}
 
@@ -586,7 +586,7 @@ Keep your response brief (2-3 sentences) and end with a thoughtful question.
 Be warm and show you're genuinely interested in understanding their unique situation."""
 
     try:
-        model = genai.GenerativeModel('gemini-2.0-flash')
+        model = genai.GenerativeModel('gemini-2.5-flash')
 
         full_prompt = f"""{system_prompt}
 
@@ -677,7 +677,7 @@ RESPONSE LENGTH: Write 5-8 sentences. Be profound but accessible.
 
 IMPORTANT: Stay in character throughout. Reference your own experiences, teachings, or historical context when relevant."""
 
-        model = genai.GenerativeModel('gemini-2.0-flash')
+        model = genai.GenerativeModel('gemini-2.5-flash')
 
         # Include conversation history for context
         conversation = "\n".join([

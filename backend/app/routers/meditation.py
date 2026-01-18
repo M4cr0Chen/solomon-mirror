@@ -162,7 +162,7 @@ async def get_stage_content(stage_id: str):
         return {"error": "Stage not found"}
 
     try:
-        model = genai.GenerativeModel('gemini-2.0-flash')
+        model = genai.GenerativeModel('gemini-2.5-flash')
 
         system_prompt = f"""You are a meditation guide with a voice like warm honey - soft, slow, and deeply calming.
 
@@ -290,7 +290,7 @@ async def save_reflection(request: ReflectionRequest, user_id: str = DEMO_USER_I
         print(f"[MEDITATION] Saving reflection for user: {user_id}")
 
         # Generate a gentle insight based on their reflection
-        model = genai.GenerativeModel('gemini-2.0-flash')
+        model = genai.GenerativeModel('gemini-2.5-flash')
         insight_response = model.generate_content(
             f"""Someone just finished a meditation and shared this reflection:
 
@@ -345,7 +345,7 @@ async def meditation_session(websocket: WebSocket):
                 stage = next((s for s in MEDITATION_STAGES if s["id"] == stage_id), None)
                 if stage:
                     try:
-                        model = genai.GenerativeModel('gemini-2.0-flash')
+                        model = genai.GenerativeModel('gemini-2.5-flash')
                         response = model.generate_content(
                             f"""You are a meditation guide with a voice like warm honey.
                             {stage['prompt']}""",
