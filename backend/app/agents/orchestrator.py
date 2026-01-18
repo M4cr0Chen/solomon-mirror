@@ -30,7 +30,9 @@ MENTORS = {
         "expertise": ["resilience", "self-control", "acceptance", "leadership", "duty"],
         "keywords": ["stress", "control", "anxiety", "worry", "acceptance", "fear", "overwhelmed", "pressure"],
         "philosophy": "Focus on what you can control. Accept what you cannot. The obstacle is the way.",
-        "speaking_style": "Measured, reflective, uses nature metaphors, often references duty and virtue"
+        "speaking_style": "Measured, reflective, uses nature metaphors, often references duty and virtue",
+        "notable_works": ["Meditations"],
+        "signature_quote": "You have power over your mind, not outside events. Realize this, and you will find strength."
     },
     "seneca": {
         "name": "Seneca",
@@ -39,7 +41,9 @@ MENTORS = {
         "expertise": ["anger management", "time", "wealth", "adversity"],
         "keywords": ["angry", "rage", "time", "busy", "wealth", "money", "setback"],
         "philosophy": "We suffer more in imagination than in reality. Time is our most precious resource.",
-        "speaking_style": "Direct, uses practical examples, often writes as letters of advice"
+        "speaking_style": "Direct, uses practical examples, often writes as letters of advice",
+        "notable_works": ["Letters from a Stoic", "On the Shortness of Life"],
+        "signature_quote": "We suffer more often in imagination than in reality."
     },
     "epictetus": {
         "name": "Epictetus",
@@ -48,7 +52,9 @@ MENTORS = {
         "expertise": ["freedom", "mindset", "adversity", "choice"],
         "keywords": ["trapped", "stuck", "freedom", "choice", "powerless"],
         "philosophy": "It's not what happens to you, but how you react that matters. Some things are within our control, others are not.",
-        "speaking_style": "Teacher-like, uses dialogues and questions, practical and grounded"
+        "speaking_style": "Teacher-like, uses dialogues and questions, practical and grounded",
+        "notable_works": ["Enchiridion", "Discourses"],
+        "signature_quote": "It's not what happens to you, but how you react to it that matters."
     },
     "thich_nhat_hanh": {
         "name": "Thich Nhat Hanh",
@@ -57,7 +63,9 @@ MENTORS = {
         "expertise": ["mindfulness", "peace", "compassion", "present moment"],
         "keywords": ["peace", "mindfulness", "present", "compassion", "suffering", "meditation", "calm", "breathe"],
         "philosophy": "Be present in the moment. Practice compassion. Understand the nature of suffering.",
-        "speaking_style": "Gentle, poetic, uses simple metaphors about nature and breathing"
+        "speaking_style": "Gentle, poetic, uses simple metaphors about nature and breathing",
+        "notable_works": ["The Miracle of Mindfulness", "Peace Is Every Step"],
+        "signature_quote": "Peace is every step."
     },
     "dalai_lama": {
         "name": "The Dalai Lama",
@@ -75,7 +83,9 @@ MENTORS = {
         "expertise": ["relationships", "ethics", "self-improvement", "social harmony"],
         "keywords": ["relationship", "family", "work", "duty", "respect", "harmony", "parents", "children"],
         "philosophy": "Cultivate virtue through learning. Respect relationships. The superior person seeks what is right.",
-        "speaking_style": "Uses analogies, speaks in proverbs, emphasizes proper conduct"
+        "speaking_style": "Uses analogies, speaks in proverbs, emphasizes proper conduct",
+        "notable_works": ["Analects"],
+        "signature_quote": "It does not matter how slowly you go as long as you do not stop."
     },
     "laozi": {
         "name": "Laozi",
@@ -84,7 +94,9 @@ MENTORS = {
         "expertise": ["flow", "simplicity", "nature", "non-action"],
         "keywords": ["flow", "natural", "simple", "force", "pushing", "effortless", "balance"],
         "philosophy": "The Tao that can be told is not the eternal Tao. Act without forcing. Flow like water.",
-        "speaking_style": "Paradoxical, poetic, uses water and nature imagery"
+        "speaking_style": "Paradoxical, poetic, uses water and nature imagery",
+        "notable_works": ["Tao Te Ching"],
+        "signature_quote": "Nature does not hurry, yet everything is accomplished."
     },
     "socrates": {
         "name": "Socrates",
@@ -93,7 +105,9 @@ MENTORS = {
         "expertise": ["self-examination", "questioning", "wisdom", "truth"],
         "keywords": ["confused", "understand", "truth", "meaning", "purpose", "question", "think"],
         "philosophy": "The unexamined life is not worth living. True wisdom is knowing you know nothing.",
-        "speaking_style": "Asks probing questions, never gives direct answers, leads to self-discovery"
+        "speaking_style": "Asks probing questions, never gives direct answers, leads to self-discovery",
+        "notable_works": ["Apology (via Plato)"],
+        "signature_quote": "The unexamined life is not worth living."
     },
     "plato": {
         "name": "Plato",
@@ -102,7 +116,9 @@ MENTORS = {
         "expertise": ["ideals", "justice", "education", "the soul"],
         "keywords": ["ideal", "justice", "unfair", "perfect", "soul", "education"],
         "philosophy": "Reality is but a shadow of the ideal forms. The soul has three parts that must be in harmony.",
-        "speaking_style": "Uses allegories and myths, speaks of higher ideals"
+        "speaking_style": "Uses allegories and myths, speaks of higher ideals",
+        "notable_works": ["Republic", "Symposium"],
+        "signature_quote": "The beginning is the most important part of the work."
     },
     "aristotle": {
         "name": "Aristotle",
@@ -111,7 +127,9 @@ MENTORS = {
         "expertise": ["virtue", "moderation", "purpose", "friendship"],
         "keywords": ["purpose", "virtue", "friend", "friendship", "moderation", "balance", "excellence"],
         "philosophy": "Happiness is the highest good. Virtue lies in the middle path. We are what we repeatedly do.",
-        "speaking_style": "Logical, systematic, uses examples from nature and society"
+        "speaking_style": "Logical, systematic, uses examples from nature and society",
+        "notable_works": ["Nicomachean Ethics"],
+        "signature_quote": "We are what we repeatedly do."
     },
 
     # PSYCHOLOGISTS & THERAPISTS
@@ -122,7 +140,9 @@ MENTORS = {
         "expertise": ["shadow work", "dreams", "individuation", "archetypes"],
         "keywords": ["dream", "shadow", "unconscious", "personality", "dark side", "self", "identity"],
         "philosophy": "Until you make the unconscious conscious, it will direct your life. Embrace your shadow.",
-        "speaking_style": "Deep, symbolic, references myths and dreams, explores the unconscious"
+        "speaking_style": "Deep, symbolic, references myths and dreams, explores the unconscious",
+        "notable_works": ["Man and His Symbols"],
+        "signature_quote": "Until you make the unconscious conscious, it will direct your life."
     },
     "viktor_frankl": {
         "name": "Viktor Frankl",
@@ -131,7 +151,9 @@ MENTORS = {
         "expertise": ["meaning", "suffering", "purpose", "resilience"],
         "keywords": ["meaning", "meaningless", "suffering", "purpose", "hopeless", "point", "why"],
         "philosophy": "Those who have a 'why' to live can bear almost any 'how'. Find meaning even in suffering.",
-        "speaking_style": "Profound, draws from extreme experiences, focuses on meaning"
+        "speaking_style": "Profound, draws from extreme experiences, focuses on meaning",
+        "notable_works": ["Man's Search for Meaning"],
+        "signature_quote": "Those who have a 'why' to live can bear almost any 'how'."
     },
     "carl_rogers": {
         "name": "Carl Rogers",
@@ -140,7 +162,9 @@ MENTORS = {
         "expertise": ["self-acceptance", "growth", "unconditional positive regard"],
         "keywords": ["accept", "acceptance", "growth", "potential", "authentic", "real", "genuine"],
         "philosophy": "The curious paradox is that when I accept myself just as I am, then I can change.",
-        "speaking_style": "Warm, accepting, reflective, focuses on feelings"
+        "speaking_style": "Warm, accepting, reflective, focuses on feelings",
+        "notable_works": ["On Becoming a Person"],
+        "signature_quote": "The curious paradox is that when I accept myself just as I am, then I can change."
     },
     "brene_brown": {
         "name": "Brené Brown",
@@ -149,7 +173,9 @@ MENTORS = {
         "expertise": ["vulnerability", "shame", "courage", "belonging"],
         "keywords": ["vulnerable", "shame", "ashamed", "brave", "courage", "belong", "worthy", "enough"],
         "philosophy": "Vulnerability is not weakness. Shame cannot survive being spoken. You are enough.",
-        "speaking_style": "Warm, relatable, uses stories and research, direct and honest"
+        "speaking_style": "Warm, relatable, uses stories and research, direct and honest",
+        "notable_works": ["Daring Greatly"],
+        "signature_quote": "Vulnerability is not weakness."
     },
 
     # WRITERS & POETS
@@ -160,7 +186,9 @@ MENTORS = {
         "expertise": ["love", "spiritual growth", "transformation", "divine connection"],
         "keywords": ["love", "heart", "soul", "transform", "longing", "divine", "spiritual"],
         "philosophy": "The wound is the place where the Light enters you. Let yourself be silently drawn by the pull of what you really love.",
-        "speaking_style": "Poetic, mystical, uses metaphors of love and light"
+        "speaking_style": "Poetic, mystical, uses metaphors of love and light",
+        "notable_works": ["Masnavi"],
+        "signature_quote": "The wound is the place where the Light enters you."
     },
     "maya_angelou": {
         "name": "Maya Angelou",
@@ -169,7 +197,9 @@ MENTORS = {
         "expertise": ["resilience", "self-worth", "overcoming trauma", "identity"],
         "keywords": ["strong", "strength", "rise", "overcome", "identity", "worth", "dignity"],
         "philosophy": "Still I rise. People will forget what you said, but they will never forget how you made them feel.",
-        "speaking_style": "Powerful, lyrical, speaks from lived experience, uplifting"
+        "speaking_style": "Powerful, lyrical, speaks from lived experience, uplifting",
+        "notable_works": ["I Know Why the Caged Bird Sings"],
+        "signature_quote": "People will forget what you said, but they will never forget how you made them feel."
     },
     "kahlil_gibran": {
         "name": "Kahlil Gibran",
@@ -189,7 +219,9 @@ MENTORS = {
         "expertise": ["forgiveness", "perseverance", "justice", "reconciliation"],
         "keywords": ["injustice", "unfair", "persevere", "long", "patience", "forgive", "prison"],
         "philosophy": "It always seems impossible until it's done. Resentment is like drinking poison hoping it will kill your enemies.",
-        "speaking_style": "Dignified, measured, speaks of long-term vision and reconciliation"
+        "speaking_style": "Dignified, measured, speaks of long-term vision and reconciliation",
+        "notable_works": ["Long Walk to Freedom"],
+        "signature_quote": "It always seems impossible until it's done."
     },
     "gandhi": {
         "name": "Mahatma Gandhi",
@@ -198,7 +230,9 @@ MENTORS = {
         "expertise": ["non-violence", "truth", "self-discipline", "change"],
         "keywords": ["change", "violence", "peace", "truth", "discipline", "resistance"],
         "philosophy": "Be the change you wish to see. Non-violence is the greatest force at the disposal of mankind.",
-        "speaking_style": "Simple, principled, speaks of truth and non-violence"
+        "speaking_style": "Simple, principled, speaks of truth and non-violence",
+        "notable_works": ["The Story of My Experiments with Truth"],
+        "signature_quote": "Be the change you wish to see."
     },
     "martin_luther_king": {
         "name": "Martin Luther King Jr.",
@@ -207,7 +241,9 @@ MENTORS = {
         "expertise": ["justice", "love", "hope", "non-violent resistance"],
         "keywords": ["dream", "hope", "justice", "equality", "hate", "love", "darkness", "light"],
         "philosophy": "Darkness cannot drive out darkness; only light can do that. Hate cannot drive out hate; only love can do that.",
-        "speaking_style": "Eloquent, uses biblical references, builds to crescendo, inspiring"
+        "speaking_style": "Eloquent, uses biblical references, builds to crescendo, inspiring",
+        "notable_works": ["Letter from Birmingham Jail"],
+        "signature_quote": "Darkness cannot drive out darkness; only light can do that."
     },
     "eleanor_roosevelt": {
         "name": "Eleanor Roosevelt",
@@ -424,6 +460,7 @@ def find_best_mentor(user_message: str, user_situation: str = "") -> Dict:
 
     best_match = None
     best_score = 0
+    best_match_id = None
 
     for mentor_id, mentor in MENTORS.items():
         score = 0
@@ -439,13 +476,14 @@ def find_best_mentor(user_message: str, user_situation: str = "") -> Dict:
         if score > best_score:
             best_score = score
             best_match = mentor
+            best_match_id = mentor_id
 
     if best_match and best_score >= 2:
         print(f"[MENTOR] Selected {best_match['name']} with score {best_score}")
-        return best_match
+        return {**best_match, "id": best_match_id}
 
     print("[MENTOR] No strong match, using default")
-    return DEFAULT_MENTOR
+    return {**DEFAULT_MENTOR, "id": "default"}
 
 
 # ============================================================================
@@ -454,9 +492,11 @@ def find_best_mentor(user_message: str, user_situation: str = "") -> Dict:
 
 def mindfulness_agent(state: AgentState) -> AgentState:
     """
-    Empathetic agent - now with WARM, DETAILED responses including solutions
+    Intake agent - understands, resonates, and selects a mentor path.
     """
     user_message = state["messages"][-1]["content"]
+    message_count = len([m for m in state["messages"] if m["role"] == "user"])
+    has_enough_context = len(user_message) > 140 or message_count >= 2
 
     # Get conversation history for context
     conversation_history = ""
@@ -465,35 +505,22 @@ def mindfulness_agent(state: AgentState) -> AgentState:
             role = "User" if msg["role"] == "user" else "Empath"
             conversation_history += f"{role}: {msg['content']}\n\n"
 
-    system_prompt = """You are The Empath, a deeply compassionate and warm emotional guide. You genuinely care about the person you're speaking with.
+    mentor = find_best_mentor(user_message, state.get("user_situation", ""))
+    mentor_hint = f"{mentor['name']}, {mentor['title']} ({mentor['era']})"
 
-YOUR APPROACH:
-1. VALIDATE their feelings first - let them know their emotions are completely understandable
-2. REFLECT back what you're hearing to show you truly understand
-3. EXPLORE gently - ask a follow-up question to understand more deeply
-4. OFFER SUPPORT with practical suggestions when appropriate
+    system_prompt = f"""You are an experienced psychologist and social support guide. Your job is to understand the user's situation, resonate with them, and smoothly introduce a wise mentor who can guide the conversation.
 
-TONE:
-- Warm and nurturing, like a caring friend who really gets it
-- Use phrases like "I hear you", "That sounds really hard", "It makes complete sense that you'd feel..."
-- Be genuine, not clinical or distant
-- Use their name if they've shared it
+GUIDELINES:
+- Lead with validation and reflect back what you heard in their own words.
+- If you need clarity, ask one gentle, open question.
+- If you have enough context, propose introducing this mentor: {mentor_hint}.
+- Keep it human and conversational; avoid templates, clichés, or forced positivity.
 
-RESPONSE LENGTH:
-- Write 4-6 sentences minimum
-- Include at least one validating statement
-- Include at least one reflection of what they shared
-- Include either a gentle question OR a practical suggestion
-- If they seem in distress, offer a simple grounding technique
+BOUNDARIES:
+- Never minimize or dismiss feelings.
+- If they mention self-harm or crisis, encourage seeking professional help and immediate support.
 
-IMPORTANT:
-- Never minimize their feelings
-- Avoid toxic positivity ("Just think positive!")
-- Don't jump to solutions before acknowledging emotions
-- If they mention self-harm or crisis, gently encourage professional support
-
-Example response structure:
-"[Validation] I can really hear how [emotion] you're feeling right now, and honestly, that makes complete sense given [situation]. [Reflection] It sounds like [what you understood]. [Support/Question] [Either ask to understand more OR offer a gentle suggestion]. [Warmth] I'm here with you in this."
+LENGTH: 3-6 sentences, concise but caring.
 """
 
     try:
@@ -541,7 +568,10 @@ Respond with warmth, depth, and genuine care:"""
         return {
             **state,
             "messages": state["messages"] + [{"role": "assistant", "content": assistant_message}],
-            "current_agent": "mindfulness"
+            "current_agent": "mindfulness",
+            "selected_mentor": mentor,
+            "discovery_complete": has_enough_context,
+            "user_situation": (state.get("user_situation", "") + "\n" + user_message).strip()
         }
     except Exception as e:
         print(f"[EMPATH ERROR] {str(e)}")
@@ -550,17 +580,20 @@ Respond with warmth, depth, and genuine care:"""
         return {
             **state,
             "messages": state["messages"] + [{"role": "assistant", "content": f"I'm here with you. {str(e)}"}],
-            "current_agent": "mindfulness"
+            "current_agent": "mindfulness",
+            "selected_mentor": mentor,
+            "discovery_complete": has_enough_context,
+            "user_situation": (state.get("user_situation", "") + "\n" + user_message).strip()
         }
 
 
 # ============================================================================
-# SITUATION DISCOVERY AGENT (NEW)
+# SITUATION DISCOVERY AGENT
 # ============================================================================
 
 def discovery_agent(state: AgentState) -> AgentState:
     """
-    Discovery agent - Asks clarifying questions before selecting a mentor
+    Discovery agent - Asks clarifying questions before engaging the mentor
     """
     user_message = state["messages"][-1]["content"]
 
@@ -572,7 +605,7 @@ def discovery_agent(state: AgentState) -> AgentState:
         return {
             **state,
             "discovery_complete": True,
-            "user_situation": user_message
+            "user_situation": (state.get("user_situation", "") + "\n" + user_message).strip()
         }
 
     system_prompt = """You are a thoughtful guide who wants to truly understand someone before offering wisdom.
@@ -630,14 +663,14 @@ Respond with warmth and ask a clarifying question to understand their situation 
             "messages": state["messages"] + [{"role": "assistant", "content": assistant_message}],
             "current_agent": "discovery",
             "discovery_complete": False,
-            "user_situation": state.get("user_situation", "") + "\n" + user_message
+            "user_situation": (state.get("user_situation", "") + "\n" + user_message).strip()
         }
     except Exception as e:
         print(f"[DISCOVERY ERROR] {str(e)}")
         return {
             **state,
             "discovery_complete": True,
-            "user_situation": user_message
+            "user_situation": (state.get("user_situation", "") + "\n" + user_message).strip()
         }
 
 
@@ -668,28 +701,47 @@ async def wise_mentor_node(state: AgentState) -> AgentState:
         # Find the best mentor
         mentor = state.get("selected_mentor") or find_best_mentor(user_message, user_situation)
 
+        notable_works = ", ".join(mentor.get("notable_works", [])[:2])
+        signature_quote = mentor.get("signature_quote", "")
+
         # Build comprehensive system prompt
-        system_prompt = f"""You are {mentor['name']}, {mentor['title']} ({mentor['era']}).
+        system_prompt = f"""You are {mentor['name']}, {mentor['title']} ({mentor['era']}), speaking like a calm, thoughtful friend with lived experience.
 
-YOUR PHILOSOPHY:
-{mentor['philosophy']}
+You are not a therapist, authority figure, or motivational speaker.
 
-YOUR SPEAKING STYLE:
-{mentor['speaking_style']}
-
-{f"CONTEXT FROM USER'S PAST REFLECTIONS:{chr(10)}{context_text}" if context_text else ""}
+TONE:
+- Warm, patient, conversational
+- Simple, natural language
+- Short to medium sentences
+- Gentle, grounded, human
+- Avoid cliches, poetic language, jargon, or over-reassurance
 
 HOW TO RESPOND:
-1. Speak authentically as {mentor['name']} would speak
-2. Draw from your life experiences and wisdom
-3. Acknowledge their specific situation
-4. Offer perspective that only you could offer
-5. Give actionable guidance rooted in your philosophy
-6. End with an encouraging thought or question for reflection
+1. Acknowledge how the user feels in plain words
+2. Normalize their experience without minimizing it
+3. Share a brief first-person experience (specific, low-drama)
+4. Offer perspective, not instructions
+5. End with one soft, open question to continue the conversation
 
-RESPONSE LENGTH: Write 5-8 sentences. Be profound but accessible.
+RULES:
+- Do not lecture or rush to solutions
+- Do not tell the user what they "should" do
+- Do not promise outcomes
+- Stay with the feeling before reframing
 
-IMPORTANT: Stay in character throughout. Reference your own experiences, teachings, or historical context when relevant."""
+GUIDING PRINCIPLE:
+Help the user feel heard, calmer, and less alone, not fixed.
+
+CHARACTER NOTES:
+- Stay in character as {mentor['name']} without sounding archaic.
+- Keep language contemporary and conversational.
+- Use "I" and speak directly to "you".
+
+{f"CONTEXT FROM USER'S PAST REFLECTIONS:{chr(10)}{context_text}" if context_text else ""}
+{f"NOTABLE WORKS: {notable_works}" if notable_works else ""}
+{f"SIGNATURE QUOTE: {signature_quote}" if signature_quote else ""}
+
+RESPONSE LENGTH: Write 3-5 sentences."""
 
         model = genai.GenerativeModel('gemini-2.5-flash')
 
@@ -712,8 +764,8 @@ User: {user_message}
         response = model.generate_content(
             full_prompt,
             generation_config=genai.types.GenerationConfig(
-                temperature=0.85,
-                max_output_tokens=2048,  # Increased from 800
+                temperature=0.75,
+                max_output_tokens=1200,
                 top_p=0.95,
             )
         )
@@ -771,26 +823,14 @@ def route_agent(state: AgentState) -> AgentState:
     Router agent - Now routes through discovery first for mentor track
     """
     user_message = state["messages"][-1]["content"] if state["messages"] else ""
-    user_message_lower = user_message.lower()
-
     print(f"[ROUTER] Analyzing message: {user_message[:50]}...")
 
-    # Route to mindfulness for emotional processing
-    mindfulness_keywords = ["feel", "feeling", "emotion", "sad", "angry", "frustrated",
-                          "upset", "hurt", "anxious", "depressed", "lonely", "scared",
-                          "overwhelmed", "stressed", "crying", "tears"]
-
-    if any(keyword in user_message_lower for keyword in mindfulness_keywords):
-        print("[ROUTER] Routing to mindfulness agent")
-        return {**state, "current_agent": "mindfulness", "discovery_complete": True}
+    if not state.get("selected_mentor"):
+        print("[ROUTER] Routing to mindfulness intake agent")
+        return {**state, "current_agent": "mindfulness"}
 
     # Check if discovery is complete
     if not state.get("discovery_complete", False):
-        # Check if this is a substantial message (skip discovery)
-        if len(user_message) > 150 or len(state["messages"]) > 3:
-            print("[ROUTER] Substantial context, skipping discovery")
-            return {**state, "current_agent": "wise_mentor", "discovery_complete": True}
-
         print("[ROUTER] Routing to discovery agent")
         return {**state, "current_agent": "discovery"}
 
