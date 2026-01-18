@@ -1,4 +1,5 @@
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+from fastapi.responses import StreamingResponse
 import google.generativeai as genai
 from app.config import get_settings
 from app.services.rag import ingest_journal
@@ -6,6 +7,8 @@ from pydantic import BaseModel
 from typing import List, Optional, Dict
 import asyncio
 import json
+import re
+import time
 
 router = APIRouter()
 settings = get_settings()
@@ -181,14 +184,32 @@ CRITICAL STYLE RULES:
             system_prompt,
             generation_config=genai.types.GenerationConfig(
                 temperature=0.85,
-                max_output_tokens=600,
+                max_output_tokens=2048,  # Increased from 600 to prevent truncation
             )
         )
+
+        # Extract content properly to avoid interruption
+        content = ""
+        if response.candidates:
+            candidate = response.candidates[0]
+
+            # Check if response was truncated
+            if hasattr(candidate, 'finish_reason'):
+                print(f"[MEDITATION] Stage '{stage_id}' finish reason: {candidate.finish_reason}")
+                if candidate.finish_reason == 'MAX_TOKENS':
+                    print(f"⚠️  [MEDITATION] WARNING: Stage '{stage_id}' response truncated due to max_output_tokens limit!")
+
+            if candidate.content and candidate.content.parts:
+                content = "".join(part.text for part in candidate.content.parts)
+            else:
+                content = get_fallback_content(stage_id)
+        else:
+            content = get_fallback_content(stage_id)
 
         return {
             "stage_id": stage_id,
             "stage_name": stage["name"],
-            "content": response.text,
+            "content": content,
             "duration": stage["duration"]
         }
     except Exception as e:
@@ -199,6 +220,58 @@ CRITICAL STYLE RULES:
             "content": get_fallback_content(stage_id),
             "duration": stage["duration"]
         }
+
+
+def break_into_short_lines(text: str, max_words: int = 10) -> List[str]:
+    """Break meditation text into short lines of max_words each, respecting natural pauses"""
+    # First, normalize the text
+    text = text.strip()
+
+    # Split by newlines and ellipses (natural pauses in meditation)
+    segments = re.split(r'\n+', text)
+
+    lines = []
+    for segment in segments:
+        segment = segment.strip()
+        if not segment:
+            continue
+
+        # Split by ellipses but keep them with the preceding text
+        parts = segment.split('...')
+
+        for i, part in enumerate(parts):
+            part = part.strip()
+            if not part:
+                continue
+
+            # Add ellipses back if not the last part
+            if i < len(parts) - 1:
+                part += '...'
+
+            # Now break this part into chunks of max_words
+            words = part.split()
+            current_line = []
+
+            for word in words:
+                current_line.append(word)
+
+                # Check if we've hit max words or if there's sentence-ending punctuation
+                has_ending = any(word.endswith(p) for p in ['.', '!', '?', '...'])
+
+                if len(current_line) >= max_words or (has_ending and len(current_line) >= 4):
+                    line_text = ' '.join(current_line)
+                    # Don't add empty lines or lines that are just punctuation
+                    if line_text and not re.match(r'^[.!?,\s]+$', line_text):
+                        lines.append(line_text)
+                    current_line = []
+
+            # Add remaining words
+            if current_line:
+                line_text = ' '.join(current_line)
+                if line_text and not re.match(r'^[.!?,\s]+$', line_text):
+                    lines.append(line_text)
+
+    return lines
 
 
 def get_fallback_content(stage_id: str) -> str:
@@ -351,11 +424,29 @@ async def meditation_session(websocket: WebSocket):
                             {stage['prompt']}""",
                             generation_config=genai.types.GenerationConfig(
                                 temperature=0.85,
-                                max_output_tokens=600,
+                                max_output_tokens=2048,  # Increased from 600 to prevent truncation
                             )
                         )
-                        content = response.text
-                    except:
+
+                        # Extract content properly to avoid interruption
+                        content = ""
+                        if response.candidates:
+                            candidate = response.candidates[0]
+
+                            # Check if response was truncated
+                            if hasattr(candidate, 'finish_reason'):
+                                print(f"[MEDITATION WS] Stage '{stage_id}' finish reason: {candidate.finish_reason}")
+                                if candidate.finish_reason == 'MAX_TOKENS':
+                                    print(f"⚠️  [MEDITATION WS] WARNING: Stage '{stage_id}' response truncated!")
+
+                            if candidate.content and candidate.content.parts:
+                                content = "".join(part.text for part in candidate.content.parts)
+                            else:
+                                content = get_fallback_content(stage_id)
+                        else:
+                            content = get_fallback_content(stage_id)
+                    except Exception as e:
+                        print(f"[MEDITATION WS] Error generating content: {str(e)}")
                         content = get_fallback_content(stage_id)
 
                     await websocket.send_json({
@@ -391,6 +482,107 @@ async def meditation_session(websocket: WebSocket):
         traceback.print_exc()
     finally:
         print("[MEDITATION] Session ended")
+
+
+@router.get("/stream/{stage_id}")
+async def stream_meditation_stage(stage_id: str):
+    """Stream meditation content line by line for continuous display"""
+    stage = next((s for s in MEDITATION_STAGES if s["id"] == stage_id), None)
+    if not stage:
+        return {"error": "Stage not found"}
+
+    async def generate_lines():
+        """Generator that continuously produces meditation lines"""
+        try:
+            model = genai.GenerativeModel('gemini-2.5-flash')
+
+            # Enhanced prompt for continuous meditation guidance
+            continuous_prompt = f"""You are a meditation guide with a voice like warm honey - soft, slow, and deeply calming.
+
+CRITICAL STYLE RULES:
+- Write as if speaking to someone you care about
+- Use simple, sensory words (soft, warm, gentle, light, ease)
+- Short sentences. Let them breathe.
+- Use "..." for pauses - these are as important as words
+- No clinical language, no instructions that feel like commands
+- Everything is an invitation, never a demand ("you might notice..." not "notice your...")
+- Avoid: "Now", "Next", "Let's", "I want you to" - these feel mechanical
+
+CONTINUOUS GUIDANCE:
+Generate a flowing meditation script for the entire {stage['duration']} second duration.
+This should be enough content to fill the time with gentle, continuous guidance.
+Think of this as a gentle voice accompanying them throughout the stage.
+
+{stage['prompt']}
+
+Write at least 500-800 words of flowing, gentle meditation guidance."""
+
+            response = model.generate_content(
+                continuous_prompt,
+                generation_config=genai.types.GenerationConfig(
+                    temperature=0.85,
+                    max_output_tokens=3072,  # Even higher for continuous content
+                )
+            )
+
+            # Extract full content
+            content = ""
+            if response.candidates:
+                candidate = response.candidates[0]
+                if hasattr(candidate, 'finish_reason'):
+                    print(f"[MEDITATION STREAM] Stage '{stage_id}' finish reason: {candidate.finish_reason}")
+                if candidate.content and candidate.content.parts:
+                    content = "".join(part.text for part in candidate.content.parts)
+
+            if not content:
+                content = get_fallback_content(stage_id)
+
+            # Break into short lines (max 10 words each)
+            lines = break_into_short_lines(content, max_words=10)
+
+            # Calculate timing: spread lines across stage duration
+            stage_duration = stage['duration']
+            if len(lines) > 0:
+                delay_per_line = stage_duration / len(lines)
+                # Cap delay between 4-6 seconds for natural pacing (slower for meditation)
+                delay_per_line = max(4.0, min(6.0, delay_per_line))
+            else:
+                delay_per_line = 4.5
+
+            print(f"[MEDITATION STREAM] Stage '{stage_id}': {len(lines)} lines, {delay_per_line:.2f}s per line")
+
+            # Stream lines one by one
+            for i, line in enumerate(lines):
+                data = {
+                    "type": "line",
+                    "content": line,
+                    "index": i,
+                    "total": len(lines),
+                    "stage_id": stage_id
+                }
+                yield f"data: {json.dumps(data)}\n\n"
+
+                # Wait before next line (except for the last one)
+                if i < len(lines) - 1:
+                    await asyncio.sleep(delay_per_line)
+
+            # Send completion signal
+            yield f"data: {json.dumps({'type': 'complete', 'stage_id': stage_id})}\n\n"
+
+        except Exception as e:
+            print(f"[MEDITATION STREAM] Error: {str(e)}")
+            error_data = {"type": "error", "message": str(e)}
+            yield f"data: {json.dumps(error_data)}\n\n"
+
+    return StreamingResponse(
+        generate_lines(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no"
+        }
+    )
 
 
 @router.get("/health")
