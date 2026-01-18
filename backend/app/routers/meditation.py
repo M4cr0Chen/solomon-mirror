@@ -2,7 +2,12 @@ from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from fastapi.responses import StreamingResponse
 import google.generativeai as genai
 from app.config import get_settings
-from app.services.rag import ingest_journal
+from app.services.rag import ingest_journal, search_memories
+from app.services.user_personalization import (
+    get_personalization_context,
+    get_greeting_name,
+    get_stress_acknowledgment
+)
 from pydantic import BaseModel
 from typing import List, Optional, Dict
 import asyncio
@@ -485,7 +490,7 @@ async def meditation_session(websocket: WebSocket):
 
 
 @router.get("/stream/{stage_id}")
-async def stream_meditation_stage(stage_id: str):
+async def stream_meditation_stage(stage_id: str, user_id: str = DEMO_USER_ID):
     """Stream meditation content line by line for continuous display"""
     stage = next((s for s in MEDITATION_STAGES if s["id"] == stage_id), None)
     if not stage:
@@ -494,10 +499,39 @@ async def stream_meditation_stage(stage_id: str):
     async def generate_lines():
         """Generator that continuously produces meditation lines"""
         try:
+            # Get personalization data
+            user_name = get_greeting_name(user_id)
+            personalization = get_personalization_context(user_id)
+            stress_acknowledgment = get_stress_acknowledgment(user_id)
+
+            # Get recent journal context via RAG
+            journal_context = ""
+            try:
+                memories = await search_memories(user_id, "recent thoughts feelings meditation", top_k=2)
+                if memories:
+                    journal_snippets = [m[:150] + "..." for m in memories[:2]]
+                    journal_context = "Recent reflections: " + " | ".join(journal_snippets)
+            except Exception as e:
+                print(f"[MEDITATION] Could not fetch journal context: {e}")
+
             model = genai.GenerativeModel('gemini-2.5-flash')
 
-            # Enhanced prompt for continuous meditation guidance
+            # Enhanced prompt for continuous meditation guidance with personalization
             continuous_prompt = f"""You are a meditation guide with a voice like warm honey - soft, slow, and deeply calming.
+
+PERSONALIZATION CONTEXT:
+{personalization}
+
+{journal_context}
+
+CRITICAL: Use this context to make the meditation DEEPLY PERSONAL:
+- Address them by name: "{user_name}"
+- Acknowledge their specific challenges naturally (e.g., "{stress_acknowledgment}")
+- Reference their goals and aspirations
+- Use metaphors from their interests when appropriate
+- Make them feel truly seen and understood
+
+You are a meditation guide with a voice like warm honey - soft, slow, and deeply calming.
 
 CRITICAL STYLE RULES:
 - Write as if speaking to someone you care about
@@ -513,9 +547,16 @@ Generate a flowing meditation script for the entire {stage['duration']} second d
 This should be enough content to fill the time with gentle, continuous guidance.
 Think of this as a gentle voice accompanying them throughout the stage.
 
+PERSONALIZATION EXAMPLES:
+- "Dear {user_name}... I know things have been challenging lately..."
+- "You've been working so hard on [their goals]... it's okay to rest..."
+- "All that worry about [their stress]... we can set it down for now..."
+- Use their interests for metaphors: "Like [their interest], this breath flows naturally..."
+
 {stage['prompt']}
 
-Write at least 500-800 words of flowing, gentle meditation guidance."""
+Write at least 500-800 words of flowing, gentle, PERSONALIZED meditation guidance.
+Make {user_name} feel truly seen and cared for."""
 
             response = model.generate_content(
                 continuous_prompt,

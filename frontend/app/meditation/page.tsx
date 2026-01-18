@@ -277,20 +277,20 @@ export default function Meditation() {
             </div>
           )}
 
-          {/* Main Content */}
+          {/* Main Content - Compact */}
           <div className="relative z-10 text-center w-full max-w-2xl">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
-              className="mb-16"
+              className="mb-6"
             >
               Meditation
             </motion.h2>
 
-            {/* Breathing Circle */}
+            {/* Breathing Circle - Smaller */}
             <motion.div
-              className="relative w-96 h-96 mx-auto mb-16"
+              className="relative w-64 h-64 mx-auto mb-6"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.2 }}
@@ -319,12 +319,12 @@ export default function Meditation() {
                 />
               </svg>
 
-              {/* Inner breathing circle */}
+              {/* Inner breathing circle - Smaller */}
               <motion.div
                 className="absolute inset-0 m-auto rounded-full"
                 style={{
-                  width: '240px',
-                  height: '240px',
+                  width: '160px',
+                  height: '160px',
                   background: 'rgba(168, 201, 195, 0.15)',
                   backdropFilter: 'blur(20px)',
                   border: '1px solid rgba(168, 201, 195, 0.3)',
@@ -343,10 +343,10 @@ export default function Meditation() {
                 }}
               />
 
-              {/* Time Display */}
+              {/* Time Display - Smaller */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
-                  className="text-6xl font-light"
+                  className="text-4xl font-light"
                   style={{ color: 'var(--color-teal)' }}
                   animate={isPlaying ? { opacity: [0.6, 1, 0.6] } : { opacity: 1 }}
                   transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
@@ -356,16 +356,16 @@ export default function Meditation() {
               </div>
             </motion.div>
 
-            {/* Guided Captions - Spotify-like vertical scrolling */}
-            <div className="mb-16 h-[240px] flex items-center justify-center px-8 overflow-hidden">
+            {/* Guided Captions - Compact */}
+            <div className="mb-6 h-[160px] flex items-end justify-center px-8 overflow-hidden">
               <AnimatePresence mode="wait">
                 {isPlaying && (
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="text-center max-w-2xl w-full relative"
+                    className="text-center max-w-2xl w-full relative pb-4"
                   >
-                    <div className="relative h-[240px] flex flex-col items-center justify-center">
+                    <div className="relative flex flex-col items-center justify-end">
                       {/* All lines container - scrolls upward */}
                       <AnimatePresence mode="popLayout">
                         {/* Previous lines - faded for context */}
@@ -386,7 +386,7 @@ export default function Meditation() {
                                 opacity: { duration: 0.5 },
                                 y: { duration: 0.6, ease: 'easeOut' },
                               }}
-                              className="text-lg font-light mb-3"
+                              className="text-base font-light mb-2"
                               style={{ color: 'var(--color-text-light)' }}
                             >
                               {line}
@@ -408,7 +408,7 @@ export default function Meditation() {
                               y: { duration: 0.6, ease: 'easeOut' },
                               scale: { duration: 0.6 },
                             }}
-                            className="text-2xl font-light leading-relaxed mb-3"
+                            className="text-xl font-light leading-relaxed mb-2"
                             style={{ color: 'var(--color-teal)' }}
                           >
                             {currentLine}
@@ -433,8 +433,8 @@ export default function Meditation() {
               </AnimatePresence>
             </div>
 
-            {/* Controls - Fixed layout */}
-            <div className="h-16 flex items-center justify-center gap-8">
+            {/* Controls - Compact */}
+            <div className="h-12 flex items-center justify-center gap-4">
               <AnimatePresence mode="wait">
                 {!isPlaying && (
                   <motion.div
@@ -442,7 +442,7 @@ export default function Meditation() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="flex gap-3"
+                    className="flex gap-2"
                   >
                     {durations.map((d) => (
                       <motion.button
@@ -450,7 +450,7 @@ export default function Meditation() {
                         onClick={() => setDuration(d)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="px-6 py-3 rounded-full transition-all duration-500"
+                        className="px-4 py-2 text-sm rounded-full transition-all duration-500"
                         style={{
                           background:
                             duration === d
@@ -477,17 +477,17 @@ export default function Meditation() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.4 }}
-                className="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0"
+                className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
                 style={{
                   background: 'rgba(168, 201, 195, 0.3)',
                   border: '1px solid rgba(168, 201, 195, 0.4)',
                 }}
               >
                 {isPlaying ? (
-                  <Pause size={24} strokeWidth={1.5} style={{ color: 'var(--color-teal)' }} />
+                  <Pause size={20} strokeWidth={1.5} style={{ color: 'var(--color-teal)' }} />
                 ) : (
                   <Play
-                    size={24}
+                    size={20}
                     strokeWidth={1.5}
                     style={{ color: 'var(--color-teal)', marginLeft: '2px' }}
                   />
@@ -499,7 +499,7 @@ export default function Meditation() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.4 }}
-                className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+                className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
                 style={{
                   background: 'rgba(168, 201, 195, 0.2)',
                   border: '1px solid rgba(168, 201, 195, 0.3)',
@@ -507,12 +507,12 @@ export default function Meditation() {
               >
                 {isMuted ? (
                   <VolumeX
-                    size={20}
+                    size={18}
                     strokeWidth={1.5}
                     style={{ color: 'var(--color-text-light)' }}
                   />
                 ) : (
-                  <Volume2 size={20} strokeWidth={1.5} style={{ color: 'var(--color-teal)' }} />
+                  <Volume2 size={18} strokeWidth={1.5} style={{ color: 'var(--color-teal)' }} />
                 )}
               </motion.button>
             </div>

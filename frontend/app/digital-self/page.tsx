@@ -95,7 +95,7 @@ export default function DigitalSelf() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: 'easeOut' }}
             >
-              <div className="text-center mb-16">
+              <div className="text-center">
                 <h1 className="mb-3">Your Inner Landscape</h1>
                 <p className="text-lg serif" style={{ color: 'var(--color-text-light)' }}>
                   A gentle reflection of who you&apos;re becoming
@@ -136,7 +136,7 @@ export default function DigitalSelf() {
                     }}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{
-                      opacity: [0.3, 0.6, 0.3],
+                      opacity: [0.5, 1.0, 0.5],
                       scale: [1, 1.1, 1],
                       y: [0, -10, 0],
                     }}
